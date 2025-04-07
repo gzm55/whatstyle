@@ -132,12 +132,15 @@ def git_format_commits(cwd):
     (commithash, content of Format.h, content of docs/conf.py)
     for each commit of Format.h.
     """
-    relpaths = 'include/clang/Format/Format.h include/clang/Tooling/Inclusions/IncludeStyle.h'.split()
+    relpaths = 'clang/include/clang/Format/Format.h clang/include/clang/Tooling/Inclusions/IncludeStyle.h'.split()
     for commit in reversed(git_commits(cwd, *relpaths)):
         format_h = unistr(gitcat(cwd, commit, relpaths[0]))
         includestyle_h = unistr(gitcat(cwd, commit, relpaths[1]))
-        conf_py = unistr(gitcat(cwd, commit, 'docs/conf.py'))
-        yield commit, format_h, includestyle_h, conf_py
+        conf_py = unistr(gitcat(cwd, commit, 'clang/docs/conf.py'))
+        cmake = unistr(gitcat(cwd, commit, 'cmake/Modules/LLVMVersion.cmake'))
+        if not cmake:
+            cmake = unistr(gitcat(cwd, commit, 'llvm/CMakeLists.txt'))
+        yield commit, format_h, includestyle_h, conf_py, cmake
 
 
 def parse_options(format_h_lines, includestyle_h):
@@ -189,7 +192,7 @@ def parse_styles(clangworkdir):
     unknown_types = set()
 
     style_versions = []
-    for commit, format_h, includestyle_h, conf_py in git_format_commits(clangworkdir):
+    for commit, format_h, includestyle_h, conf_py, cmake in git_format_commits(clangworkdir):
         base_formats = []
         release = commit
         # Use the clang version number instead of the commithash
@@ -198,12 +201,19 @@ def parse_styles(clangworkdir):
             m = re.match("release = '(.*)'", line)
             if m:
                 release = m.group(1)
+                break
+        if release == commit:
+            for line in cmake.splitlines():
+                m = re.match("\\s*set\\(LLVM_VERSION_MAJOR ([0-9]+)\\).*", line)
+                if m:
+                    release = m.group(1)
+                    break
 
         format_h_lines = format_h.splitlines()
         # Record the format style names
         # e.g. 'FormatStyle getChromiumStyle();' => 'Chromium'
         for line in format_h_lines:
-            m = re.match('\s*FormatStyle\s*get(\w+)Style\([^\)]*\);\s*', line)
+            m = re.match('\\s*FormatStyle\\s*get(\\w+)Style\\([^\\)]*\\);\\s*', line)
             if m:
                 formatname = m.group(1)
                 if formatname != 'No':
@@ -211,7 +221,7 @@ def parse_styles(clangworkdir):
                     base_formats.append(formatname)
 
         try:
-            options, unknown_optiontypes = parse_options(format_h_lines, includestyle_h)
+            options, unknown_optiontypes = parse_options(format_h_lines, includestyle_h.splitlines())
         except Exception:
             continue
         for t in unknown_optiontypes:

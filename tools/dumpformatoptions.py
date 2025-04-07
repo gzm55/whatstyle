@@ -126,12 +126,14 @@ def read_options(header, isknownoptiontype_func):
         comment += clean_comment_line(line)
       elif line.startswith('enum'):
         state = State.InEnum
-        name = re.sub(r'enum\s+(\w+)\s*\{', '\\1', line)
+        name = re.sub(r'enum\s+(\w+)\s*(:\s*\w+\s*)?\{', '\\1', line)
         enum = Enum(name, comment)
       elif line.startswith('struct'):
         state = State.InNestedStruct
         name = re.sub(r'struct\s+(\w+)\s*\{', '\\1', line)
         nested_struct = NestedStruct(name, comment)
+      elif line.startswith('//') and line.endswith(';'):
+        state = State.InStruct # skip deprecated fields
       elif line.endswith(';'):
         state = State.InStruct
         field_type, field_name = re.match(r'([<>:\w(,\s)]+)\s+(\w+);',
@@ -160,6 +162,8 @@ def read_options(header, isknownoptiontype_func):
       elif line == '};':
         state = State.InStruct
         enums[enum.name] = enum
+      elif line == '':
+        pass
       else:
         raise Exception('Invalid format, expected enum field comment or };')
     elif state == State.InEnumMemberComment:

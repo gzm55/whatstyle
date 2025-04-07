@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Copyright (c) 2016 Michael Krause ( http://krause-software.com/ ).
@@ -122,7 +122,6 @@ if (((sys.version_info[0] == 2) and (sys.version_info[1] < 7)) or (
     sys.exit(1)
 
 import argparse
-import cgi
 import codecs
 import copy
 import difflib
@@ -155,7 +154,7 @@ import time
 try:
     from urlparse import urljoin
     from urllib import pathname2url  # type: ignore
-    from cgi import escape
+    from html import escape
 except ImportError:
     from urllib.parse import urljoin  # type: ignore
     from urllib.request import pathname2url
@@ -1993,6 +1992,41 @@ CLANG_FORMAT_EVOLUTION = """\
         Yes
 + PenaltyBreakTemplateDeclaration unsigned
 # Clang 7
++ IncludeBlocks IncludeBlocksStyle
+        Preserve
+        Merge
+        Regroup
++ IncludeCategories std::vector<IncludeCategory>
++ IncludeIsMainRegex std::string
+# Clang 7
+- IncludeBlocks IncludeBlocksStyle
+        Preserve
+        Merge
+        Regroup
+- IncludeCategories std::vector<IncludeCategory>
+- IncludeIsMainRegex std::string
+# Clang 7
++ IncludeBlocks IncludeBlocksStyle
+        Preserve
+        Merge
+        Regroup
++ IncludeCategories std::vector<IncludeCategory>
++ IncludeIsMainRegex std::string
+# Clang 7
+- IncludeBlocks IncludeBlocksStyle
+        Preserve
+        Merge
+        Regroup
+- IncludeCategories std::vector<IncludeCategory>
+- IncludeIsMainRegex std::string
+# Clang 7
++ IncludeBlocks IncludeBlocksStyle
+        Preserve
+        Merge
+        Regroup
++ IncludeCategories std::vector<IncludeCategory>
++ IncludeIsMainRegex std::string
+# Clang 7
 - BreakBeforeInheritanceComma bool
 + BreakInheritanceList BreakInheritanceListStyle
         BeforeColon
@@ -2000,6 +2034,902 @@ CLANG_FORMAT_EVOLUTION = """\
         AfterColon
 # Clang 7
 + SpaceBeforeCpp11BracedList bool
+# Clang 8
++ StatementMacros std::vector<std::string>
+# Clang 8
++ JavaImportGroups std::vector<std::string>
+# Clang 9
++ AllowShortIfStatementsOnASingleLine ShortIfStyle
+        Never
+        WithoutElse
+        Always
+# Clang 9
++ AllowShortIfStatementsOnASingleLine bool
+# Clang 9
++ AllowShortIfStatementsOnASingleLine ShortIfStyle
+        Never
+        WithoutElse
+        Always
+# Clang 9
++ IndentPPDirectives PPDirectiveIndentStyle
+        None
+        AfterHash
+        BeforeHash
+# Clang 9
++ Language LanguageKind
+        None
+        Cpp
+        CSharp
+        Java
+        JavaScript
+        ObjC
+        Proto
+        TableGen
+        TextProto
+# Clang 9
++ AllowAllArgumentsOnNextLine bool
++ AllowAllConstructorInitializersOnNextLine bool
+# Clang 9
++ AllowShortLambdasOnASingleLine ShortLambdaStyle
+        None
+        Empty
+        Inline
+        All
+# Clang 9
++ SpaceBeforeParens SpaceBeforeParensOptions
+        Never
+        ControlStatements
+        NonEmptyParentheses
+        Always
+# Clang 9
++ SpaceAfterLogicalNot bool
+# Clang 9
++ BraceWrapping BraceWrappingFlags
+        bool AfterCaseLabel
+        bool AfterClass
+        bool AfterControlStatement
+        bool AfterEnum
+        bool AfterFunction
+        bool AfterNamespace
+        bool AfterObjCDeclaration
+        bool AfterStruct
+        bool AfterUnion
+        bool AfterExternBlock
+        bool BeforeCatch
+        bool BeforeElse
+        bool IndentBraces
+        bool SplitEmptyFunction
+        bool SplitEmptyRecord
+        bool SplitEmptyNamespace
+# Clang 9
++ TypenameMacros std::vector<std::string>
+# Clang 9
++ NamespaceMacros std::vector<std::string>
+# Clang 9
++ AlignConsecutiveMacros bool
+# Clang 10
++ SpaceInEmptyBlock bool
+# Clang 10
++ AllowShortBlocksOnASingleLine ShortBlockStyle
+        Never
+        Empty
+        Always
+# Clang 10
++ IndentGotoLabels bool
+# Clang 10
++ BreakBeforeBraces BraceBreakingStyle
+        Attach
+        Linux
+        Mozilla
+        Stroustrup
+        Allman
+        Whitesmiths
+        GNU
+        WebKit
+        Custom
+# Clang 10
++ Standard LanguageStandard
+        Cpp03
+        Cpp11
+        Cpp14
+        Cpp17
+        Cpp20
+        Latest
+        Auto
+# Clang 10
++ BasedOnStyle string
+        LLVM
+        Google
+        Chromium
+        Mozilla
+        WebKit
+        GNU
+        Microsoft
++ BraceWrapping BraceWrappingFlags
+        bool AfterCaseLabel
+        bool AfterClass
+        BraceWrappingAfterControlStatementStyle AfterControlStatement
+        bool AfterEnum
+        bool AfterFunction
+        bool AfterNamespace
+        bool AfterObjCDeclaration
+        bool AfterStruct
+        bool AfterUnion
+        bool AfterExternBlock
+        bool BeforeCatch
+        bool BeforeElse
+        bool IndentBraces
+        bool SplitEmptyFunction
+        bool SplitEmptyRecord
+        bool SplitEmptyNamespace
+# Clang 10
++ Standard LanguageStandard
+        Cpp03 // c++03
+        Cpp11 // c++11
+        Cpp14 // c++14
+        Cpp17 // c++17
+        Cpp20 // c++20
+        Latest
+        Auto
+# Clang 10
++ IncludeIsMainSourceRegex std::string
+# Clang 10
++ DeriveLineEnding bool
++ UseCRLF bool
+# Clang 10
++ SpaceBeforeSquareBrackets bool
+# Clang 10
++ SpacesInConditionalStatement bool
+# Clang 11
++ IndentCaseBlocks bool
+# Clang 11
++ ObjCBreakBeforeNestedBlockParam bool
+# Clang 11
++ BraceWrapping BraceWrappingFlags
+        bool AfterCaseLabel
+        bool AfterClass
+        BraceWrappingAfterControlStatementStyle AfterControlStatement
+        bool AfterEnum
+        bool AfterFunction
+        bool AfterNamespace
+        bool AfterObjCDeclaration
+        bool AfterStruct
+        bool AfterUnion
+        bool AfterExternBlock
+        bool BeforeCatch
+        bool BeforeElse
+        bool BeforeLambdaBody
+        bool IndentBraces
+        bool SplitEmptyFunction
+        bool SplitEmptyRecord
+        bool SplitEmptyNamespace
+# Clang 11
++ UseTab UseTabStyle
+        Never
+        ForIndentation
+        ForContinuationAndIndentation
+        AlignWithSpaces
+        Always
+# Clang 11
++ AlignOperands OperandAlignmentStyle
+        DontAlign
+        Align
+        AlignAfterOperator
+# Clang 11
++ AlignOperands bool
+# Clang 11
++ InsertTrailingCommas TrailingCommaStyle
+        None
+        Wrapped
+# Clang 11
++ AllowShortEnumsOnASingleLine bool
+# Clang 11
++ SpaceBeforeParens SpaceBeforeParensOptions
+        Never
+        ControlStatements
+        ControlStatementsExceptForEachMacros
+        NonEmptyParentheses
+        Always
+# Clang 11
++ AlignOperands OperandAlignmentStyle
+        DontAlign
+        Align
+        AlignAfterOperator
+# Clang 11
++ AlignConsecutiveBitFields bool
+# Clang 11
++ BraceWrapping BraceWrappingFlags
+        bool AfterCaseLabel
+        bool AfterClass
+        BraceWrappingAfterControlStatementStyle AfterControlStatement
+        bool AfterEnum
+        bool AfterFunction
+        bool AfterNamespace
+        bool AfterObjCDeclaration
+        bool AfterStruct
+        bool AfterUnion
+        bool AfterExternBlock
+        bool BeforeCatch
+        bool BeforeElse
+        bool BeforeLambdaBody
+        bool BeforeWhile
+        bool IndentBraces
+        bool SplitEmptyFunction
+        bool SplitEmptyRecord
+        bool SplitEmptyNamespace
+# Clang 11
++ BraceWrapping BraceWrappingFlags
+        bool AfterCaseLabel
+        bool AfterClass
+        BraceWrappingAfterControlStatementStyle AfterControlStatement
+        bool AfterEnum
+        bool AfterFunction
+        bool AfterNamespace
+        bool AfterObjCDeclaration
+        bool AfterStruct
+        bool AfterUnion
+        bool AfterExternBlock // Partially superseded by IndentExternBlock
+        bool BeforeCatch
+        bool BeforeElse
+        bool BeforeLambdaBody
+        bool BeforeWhile
+        bool IndentBraces
+        bool SplitEmptyFunction
+        bool SplitEmptyRecord
+        bool SplitEmptyNamespace
++ IndentExternBlock IndentExternBlockStyle
+        AfterExternBlock
+        NoIndent
+        Indent
+# Clang 11
++ WhitespaceSensitiveMacros std::vector<std::string>
+# Clang 12
++ BitFieldColonSpacing BitFieldColonSpacingStyle
+        Both
+        None
+        Before
+        After
+# Clang 12
++ AttributeMacros std::vector<std::string>
+# Clang 12
++ SortJavaStaticImport SortJavaStaticImportOptions
+        Before
+        After
+# Clang 12
++ SpaceAroundPointerQualifiers SpaceAroundPointerQualifiersStyle
+        Default
+        Before
+        After
+        Both
+# Clang 12
++ PenaltyIndentedWhitespace unsigned
+# Clang 12
++ BreakBeforeConceptDeclarations bool
++ IndentRequires bool
+# Clang 12
++ IndentPragmas bool
+# Clang 15
+- IndentPragmas bool
+- IndentRequires bool
++ AlignAfterOpenBracket BracketAlignmentStyle
+        Align
+        DontAlign
+        AlwaysBreak
+        BlockIndent
++ AlignArrayOfStructures ArrayInitializerAlignmentStyle
+        Left
+        Right
+        None
++ AlignConsecutiveAssignments AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool PadOperators
++ AlignConsecutiveBitFields AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool PadOperators
++ AlignConsecutiveDeclarations AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool PadOperators
++ AlignConsecutiveMacros AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool PadOperators
++ AllowShortIfStatementsOnASingleLine ShortIfStyle
+        Never
+        WithoutElse
+        OnlyFirstIf
+        AllIfsAndElse
++ BreakBeforeConceptDeclarations BreakBeforeConceptDeclarationsStyle
+        Never
+        Allowed
+        Always
++ BreakInheritanceList BreakInheritanceListStyle
+        BeforeColon
+        BeforeComma
+        AfterColon
+        AfterComma
++ EmptyLineAfterAccessModifier EmptyLineAfterAccessModifierStyle
+        Never
+        Leave
+        Always
++ EmptyLineBeforeAccessModifier EmptyLineBeforeAccessModifierStyle
+        Never
+        Leave
+        LogicalBlock
+        Always
++ IfMacros std::vector<std::string>
++ IndentAccessModifiers bool
++ IndentRequiresClause bool
++ InsertBraces bool
++ LambdaBodyIndentation LambdaBodyIndentationKind
+        Signature
+        OuterScope
++ Language LanguageKind
+        None
+        Cpp
+        CSharp
+        Java
+        JavaScript
+        Json
+        ObjC
+        Proto
+        TableGen
+        TextProto
++ PPIndentWidth int
++ PackConstructorInitializers PackConstructorInitializersStyle
+        Never
+        BinPack
+        CurrentLine
+        NextLine
++ PenaltyBreakOpenParenthesis unsigned
++ QualifierAlignment QualifierAlignmentStyle
+        Leave
+        Left
+        Right
+        Custom
++ QualifierOrder std::vector<std::string>
++ ReferenceAlignment ReferenceAlignmentStyle
+        Pointer
+        Left
+        Right
+        Middle
++ RemoveBracesLLVM bool
++ RequiresClausePosition RequiresClausePositionStyle
+        OwnLine
+        WithPreceding
+        WithFollowing
+        SingleLine
++ SeparateDefinitionBlocks SeparateDefinitionStyle
+        Leave
+        Always
+        Never
++ ShortNamespaceLines unsigned
++ SortIncludes SortIncludesOptions
+        Never
+        CaseSensitive
+        CaseInsensitive
++ SpaceBeforeCaseColon bool
++ SpaceBeforeParens SpaceBeforeParensStyle
+        Never
+        ControlStatements
+        ControlStatementsExceptControlMacros
+        NonEmptyParentheses
+        Always
+        Custom
++ SpaceBeforeParensOptions SpaceBeforeParensCustom
+        bool AfterControlStatements
+        bool AfterForeachMacros
+        bool AfterFunctionDeclarationName
+        bool AfterFunctionDefinitionName
+        bool AfterIfMacros
+        bool AfterOverloadedOperator
+        bool AfterRequiresInClause
+        bool AfterRequiresInExpression
+        bool BeforeNonEmptyParentheses
++ SpacesInAngles SpacesInAnglesStyle
+        Never
+        Always
+        Leave
++ SpacesInLineCommentPrefix SpacesInLineComment
+        unsigned Minimum
+        unsigned Maximum
++ StatementAttributeLikeMacros std::vector<std::string>
+# Clang 15
+- AllowAllConstructorInitializersOnNextLine bool
+- ConstructorInitializerAllOnOneLineOrOnePerLine bool
+# Clang 15
++ Language LanguageKind
+        None
+        Cpp
+        CSharp
+        Java
+        JavaScript
+        Json
+        ObjC
+        Proto
+        TableGen
+        TextProto
+        Verilog
+# Clang 16
++ BreakArrays bool
+# Clang 16
++ RemoveSemicolon bool
+# Clang 16
++ RequiresExpressionIndentation RequiresExpressionIndentationKind
+        OuterScope
+        Keyword
+# Clang 16
++ AlignTrailingComments TrailingCommentsAlignmentStyle
+        TrailingCommentsAlignmentKinds Kind
+        unsigned OverEmptyLines
+# Clang 16
++ BreakBeforeInlineASMColon BreakBeforeInlineASMColonStyle
+        Never
+        OnlyMultiline
+        Always
+# Clang 16
++ IntegerLiteralSeparator IntegerLiteralSeparatorStyle
+        int8_t Binary
+        int8_t Decimal
+        int8_t Hex
+# Clang 16
+- IntegerLiteralSeparator IntegerLiteralSeparatorStyle
+        int8_t Binary
+        int8_t Decimal
+        int8_t Hex
+# Clang 16
++ IntegerLiteralSeparator IntegerLiteralSeparatorStyle
+        int8_t Binary
+        int8_t Decimal
+        int8_t Hex
+# Clang 16
++ BreakAfterAttributes AttributeBreakingStyle
+        Always
+        Leave
+        Never
+# Clang 16
++ InsertNewlineAtEOF bool
+# Clang 16
+- BreakAfterAttributes AttributeBreakingStyle
+        Always
+        Leave
+        Never
+# Clang 16
++ BreakAfterAttributes AttributeBreakingStyle
+        Always
+        Leave
+        Never
+# Clang 16
+- DeriveLineEnding bool
+- UseCRLF bool
++ LineEnding LineEndingStyle
+        LF
+        CRLF
+        DeriveLF
+        DeriveCRLF
+# Clang 16
++ SortUsingDeclarations SortUsingDeclarationsOptions
+        Never
+        Lexicographic
+        LexicographicNumeric
+# Clang 17
++ PackConstructorInitializers PackConstructorInitializersStyle
+        Never
+        BinPack
+        CurrentLine
+        NextLine
+        NextLineOnly
+# Clang 17
++ Macros std::vector<std::string>
+# Clang 17
++ SpaceBeforeJsonColon bool
+# Clang 17
++ IntegerLiteralSeparator IntegerLiteralSeparatorStyle
+        int8_t Binary
+        int8_t BinaryMinDigits
+        int8_t Decimal
+        int8_t DecimalMinDigits
+        int8_t Hex
+        int8_t HexMinDigits
+# Clang 17
++ VerilogBreakBetweenInstancePorts bool
+# Clang 17
++ BracedInitializerIndentWidth std::optional<unsigned>
+# Clang 17
++ KeepEmptyLinesAtEOF bool
+# Clang 17
+- KeepEmptyLinesAtEOF bool
+# Clang 17
++ KeepEmptyLinesAtEOF bool
+# Clang 17
++ RemoveParentheses RemoveParenthesesStyle
+        Leave
+        MultipleParentheses
+        ReturnStatement
+# Clang 17
++ TypeNames std::vector<std::string>
+# Clang 17
++ AlignConsecutiveShortCaseStatements ShortCaseStatementsAlignmentStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCaseColons
+# Clang 17
+- AlignConsecutiveShortCaseStatements ShortCaseStatementsAlignmentStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCaseColons
+# Clang 17
++ AlignConsecutiveShortCaseStatements ShortCaseStatementsAlignmentStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCaseColons
+# Clang 17
+- AlignConsecutiveShortCaseStatements ShortCaseStatementsAlignmentStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCaseColons
+# Clang 17
++ AlignConsecutiveShortCaseStatements ShortCaseStatementsAlignmentStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCaseColons
+# Clang 17
+- SpaceInEmptyParentheses bool
+- SpacesInCStyleCastParentheses bool
+- SpacesInConditionalStatement bool
+- SpacesInParentheses bool
++ SpacesInParens SpacesInParensStyle
+        Never
+        Custom
++ SpacesInParensOptions SpacesInParensCustom
+        bool InConditionalStatements
+        bool InCStyleCasts
+        bool InEmptyParentheses
+        bool Other
+# Clang 18
++ SpaceBeforeParensOptions SpaceBeforeParensCustom
+        bool AfterControlStatements = false
+        bool AfterForeachMacros = false
+        bool AfterFunctionDeclarationName = false
+        bool AfterFunctionDefinitionName = false
+        bool AfterIfMacros = false
+        bool AfterOverloadedOperator = false
+        bool AfterRequiresInClause = false
+        bool AfterRequiresInExpression = false
+        bool BeforeNonEmptyParentheses = false
+# Clang 18
++ SpaceBeforeParensOptions SpaceBeforeParensCustom
+        bool AfterControlStatements
+        bool AfterForeachMacros
+        bool AfterFunctionDeclarationName
+        bool AfterFunctionDefinitionName
+        bool AfterIfMacros
+        bool AfterOverloadedOperator
+        bool AfterRequiresInClause
+        bool AfterRequiresInExpression
+        bool BeforeNonEmptyParentheses
+# Clang 18
++ AllowBreakBeforeNoexceptSpecifier BreakBeforeNoexceptSpecifierStyle
+        Never
+        OnlyWithParen
+        Always
+# Clang 19
++ BasedOnStyle string
+        LLVM
+        Google
+        Chromium
+        Mozilla
+        WebKit
+        GNU
+        Microsoft
+        ClangFormat
++ AlignConsecutiveAssignments AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionPointers
+        bool PadOperators
++ AlignConsecutiveBitFields AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionPointers
+        bool PadOperators
++ AlignConsecutiveDeclarations AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionPointers
+        bool PadOperators
++ AlignConsecutiveMacros AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionPointers
+        bool PadOperators
++ AllowShortCompoundRequirementOnASingleLine bool
++ BreakAdjacentStringLiterals bool
++ ObjCPropertyAttributeOrder std::vector<std::string>
++ PenaltyBreakScopeResolution unsigned
++ SkipMacroDefinitionBody bool
++ SpaceBeforeParensOptions SpaceBeforeParensCustom
+        bool AfterControlStatements
+        bool AfterForeachMacros
+        bool AfterFunctionDeclarationName
+        bool AfterFunctionDefinitionName
+        bool AfterIfMacros
+        bool AfterOverloadedOperator
+        bool AfterPlacementOperator
+        bool AfterRequiresInClause
+        bool AfterRequiresInExpression
+        bool BeforeNonEmptyParentheses
+# Clang 19
++ AlwaysBreakAfterReturnType ReturnTypeBreakingStyle
+        None
+        Automatic
+        ExceptShortType
+        All
+        TopLevel
+        AllDefinitions
+        TopLevelDefinitions
+# Clang 19
++ MainIncludeChar MainIncludeCharDiscriminator
+        Quote
+        AngleBracket
+        Any
+# Clang 19
++ AlwaysBreakTemplateDeclarations BreakTemplateDeclarationsStyle
+        Leave
+        No
+        MultiLine
+        Yes
+# Clang 19
+- AlwaysBreakTemplateDeclarations BreakTemplateDeclarationsStyle
+        Leave
+        No
+        MultiLine
+        Yes
++ BreakTemplateDeclarations BreakTemplateDeclarationsStyle
+        Leave
+        No
+        MultiLine
+        Yes
+# Clang 19
+- AlwaysBreakAfterReturnType ReturnTypeBreakingStyle
+        None
+        Automatic
+        ExceptShortType
+        All
+        TopLevel
+        AllDefinitions
+        TopLevelDefinitions
++ BreakAfterReturnType ReturnTypeBreakingStyle
+        None
+        Automatic
+        ExceptShortType
+        All
+        TopLevel
+        AllDefinitions
+        TopLevelDefinitions
+# Clang 19
++ AlignConsecutiveTableGenCondOperatorColons AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionPointers
+        bool PadOperators
+# Clang 19
++ AlignConsecutiveTableGenDefinitionColons AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionPointers
+        bool PadOperators
+# Clang 19
++ TableGenBreakInsideDAGArg DAGArgStyle
+        DontBreak
+        BreakElements
+        BreakAll
++ TableGenBreakingDAGArgOperators std::vector<std::string>
+# Clang 19
++ AlignConsecutiveTableGenBreakingDAGArgColons AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionPointers
+        bool PadOperators
+# Clang 19
++ BreakFunctionDefinitionParameters bool
+# Clang 19
++ AlignConsecutiveShortCaseStatements ShortCaseStatementsAlignmentStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCaseArrows
+        bool AlignCaseColons
++ AllowShortCaseExpressionOnASingleLine bool
+# Clang 19
++ AlignEscapedNewlines EscapedNewlineAlignmentStyle
+        DontAlign
+        Left
+        LeftWithLastLine
+        Right
+# Clang 19
+- KeepEmptyLinesAtEOF bool
+- KeepEmptyLinesAtTheStartOfBlocks bool
++ KeepEmptyLines KeepEmptyLinesStyle
+        bool AtEndOfFile
+        bool AtStartOfBlock
+        bool AtStartOfFile
+# Clang 19
+- KeepEmptyLines KeepEmptyLinesStyle
+        bool AtEndOfFile
+        bool AtStartOfBlock
+        bool AtStartOfFile
++ KeepEmptyLinesAtEOF bool
++ KeepEmptyLinesAtTheStartOfBlocks bool
+# Clang 19
+- KeepEmptyLinesAtEOF bool
+- KeepEmptyLinesAtTheStartOfBlocks bool
++ KeepEmptyLines KeepEmptyLinesStyle
+        bool AtEndOfFile
+        bool AtStartOfBlock
+        bool AtStartOfFile
+# Clang 19
++ SpacesInParensOptions SpacesInParensCustom
+        bool ExceptDoubleParentheses
+        bool InConditionalStatements
+        bool InCStyleCasts
+        bool InEmptyParentheses
+        bool Other
+# Clang 20
++ BreakBinaryOperations BreakBinaryOperationsStyle
+        Never
+        OnePerLine
+        RespectPrecedence
+# Clang 20
++ RequiresClausePosition RequiresClausePositionStyle
+        OwnLine
+        OwnLineWithBrace
+        WithPreceding
+        WithFollowing
+        SingleLine
+# Clang 20
++ BinPackParameters BinPackParametersStyle
+        BinPack
+        OnePerLine
+        AlwaysOnePerLine
+# Clang 20
++ TemplateNames std::vector<std::string>
+# Clang 20
++ AlignConsecutiveAssignments AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionDeclarations
+        bool AlignFunctionPointers
+        bool PadOperators
++ AlignConsecutiveBitFields AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionDeclarations
+        bool AlignFunctionPointers
+        bool PadOperators
++ AlignConsecutiveDeclarations AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionDeclarations
+        bool AlignFunctionPointers
+        bool PadOperators
++ AlignConsecutiveMacros AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionDeclarations
+        bool AlignFunctionPointers
+        bool PadOperators
++ AlignConsecutiveTableGenBreakingDAGArgColons AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionDeclarations
+        bool AlignFunctionPointers
+        bool PadOperators
++ AlignConsecutiveTableGenCondOperatorColons AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionDeclarations
+        bool AlignFunctionPointers
+        bool PadOperators
++ AlignConsecutiveTableGenDefinitionColons AlignConsecutiveStyle
+        bool Enabled
+        bool AcrossEmptyLines
+        bool AcrossComments
+        bool AlignCompound
+        bool AlignFunctionDeclarations
+        bool AlignFunctionPointers
+        bool PadOperators
+# Clang 20
++ ReflowComments ReflowCommentsStyle
+        Never
+        IndentOnly
+        Always
+# Clang 20
++ RemoveEmptyLinesInUnwrappedLines bool
+# Clang 20
++ KeepFormFeed bool
+# Clang 20
++ AllowShortNamespacesOnASingleLine bool
+# Clang 20
++ VariableTemplates std::vector<std::string>
+# Clang 20
++ WrapNamespaceBodyWithEmptyLines WrapNamespaceBodyWithEmptyLinesStyle
+        Never
+        Always
+        Leave
+# Clang 20
++ ExportBlockIndentation bool
+# Clang 20
+- ExportBlockIndentation bool
++ IndentExportBlock bool
+# Clang 20
++ PenaltyBreakBeforeMemberAccess unsigned
+# Clang 21
++ BreakBeforeTemplateCloser bool
+# Clang 21
++ BinPackLongBracedList bool
+# Clang 21
++ Language LanguageKind
+        None
+        C
+        Cpp
+        CSharp
+        Java
+        JavaScript
+        Json
+        ObjC
+        Proto
+        TableGen
+        TextProto
+        Verilog
+# Clang 21
++ BracedInitializerIndentWidth int
+# Clang 21
++ EnumTrailingComma EnumTrailingCommaStyle
+        Leave
+        Insert
+        Remove
 """
 
 
@@ -6053,7 +6983,7 @@ def parse_style_history():
                 else:
                     # We have a nested subtype like option BraceWrapping
                     # with an enumvalue 'bool AfterControlStatement'
-                    nopt_type, nopt_name = enumvalue.split(' ')
+                    nopt_type, nopt_name = enumvalue.split(' ')[:2]
                     nopt = option_make(nopt_name, nopt_type, [])
                     styledef_add_option(nopt, nestedstyle)
             haveoptions = True
@@ -6125,6 +7055,8 @@ def parse_miniyaml(text):
             emit(key)
         if rest in ['---', '...']:
             continue
+        if key == 'Regex':
+            rest = codecs.encode(rest, 'unicode_escape').decode('utf-8')
         if rest:
             if rest[0] == '[' and rest[-1] == ']':
                 # flow style sequence
