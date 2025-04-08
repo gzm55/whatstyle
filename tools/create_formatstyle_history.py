@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # This script uses a repurposed version of docs/tools/dump_format_style.py
@@ -204,16 +204,22 @@ def parse_styles(clangworkdir):
                 break
         if release == commit:
             for line in cmake.splitlines():
-                m = re.match("\\s*set\\(LLVM_VERSION_MAJOR ([0-9]+)\\).*", line)
-                if m:
-                    release = m.group(1)
+                if release == commit:
+                    m = re.match("\\s*set\\(LLVM_VERSION_MAJOR ([0-9]+)\\).*", line)
+                    if m:
+                        release = m.group(1)
+                elif release == "3":
+                    m = re.match("\\s*set\\(LLVM_VERSION_MINOR ([0-9]+)\\).*", line)
+                    if m:
+                        release = f"{release}.{m.group(1)}"
+                else:
                     break
 
         format_h_lines = format_h.splitlines()
         # Record the format style names
         # e.g. 'FormatStyle getChromiumStyle();' => 'Chromium'
         for line in format_h_lines:
-            m = re.match('\\s*FormatStyle\\s*get(\\w+)Style\\([^\\)]*\\);\\s*', line)
+            m = re.match('\\s*FormatStyle\\s*get(\\w+)Style\\(([^\\)]*\\);)?\\s*', line)
             if m:
                 formatname = m.group(1)
                 if formatname != 'No':
